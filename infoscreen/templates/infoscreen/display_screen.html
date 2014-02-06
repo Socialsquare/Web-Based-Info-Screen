@@ -1,0 +1,9 @@
+{% extends "infoscreen/base.html" %}
+{% block content %}
+	<script>
+	$(function() {
+		var slides = {{slides_json | safe}};
+		initialize(slides);
+	});
+	</script>
+{% endblock %}

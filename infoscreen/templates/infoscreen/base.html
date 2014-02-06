@@ -1,0 +1,14 @@
+{% load staticfiles %}<!DOCTYPE html>
+<html>
+	<head>
+		<title>Info Screen</title>
+		<link rel="stylesheet" href="{% static "infoscreen/css/base.css" %}" />
+		<script src="{% static "infoscreen/js/jquery-1.11.0.js" %}"></script>
+		<script src="{% static "infoscreen/js/base.js" %}"></script>
+		{% block head %}{% endblock %}
+	</head>
+	
+	<body>
+	{% block content %}{% endblock %}
+	</body>
+</html>
