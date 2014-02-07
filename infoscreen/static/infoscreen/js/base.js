@@ -1,33 +1,36 @@
+var FADE_DURATION = 2000;
+
 function display_slide(url, loaded_callback) {
 	$oldSlides = $(".slide");
 	$slide = $("<iframe></iframe>").appendTo("body");
 	$slide.attr('src', url).hide().addClass('slide').attr('seamless', '');
-	$slide.css('z-index', 2);
 	$slide.load(function() {
 		function go_display_next() {
 			$oldSlides.remove();
 			// Fade in
-			$slide.fadeIn(200, function() {
+			$slide.fadeIn(FADE_DURATION, function() {
 				loaded_callback($slide);
 			});
 		}
 		if($oldSlides.length > 0) {
 			// Done fading in.
-			$oldSlides.fadeOut(200, go_display_next);
+			$oldSlides.fadeOut(FADE_DURATION, go_display_next);
 		} else {
 			go_display_next();
 		}
 	});
 }
 
-SCROLL_TICK = 100;
+function is_last_slide() {
+	var total_slides = this.slides.length;
+	return this.current_slide_index >= total_slides-1;
+}
 
 function display_next_slide(end_of_slide_callback) {
 	if(!this.slides ||this.slides.length < 1) {
 		throw "No slides sat on this.slides";
 	}
-	var total_slides = this.slides.length;
-	var was_last_slide = this.current_slide_index >= total_slides-1;
+	was_last_slide = is_last_slide();
 	if(this.current_slide_index >= 0 && !was_last_slide) {
 		this.current_slide_index++;
 	} else if(was_last_slide) {
@@ -51,7 +54,15 @@ function display_next_slide(end_of_slide_callback) {
 
 function start_slideshow() {
 	display_next_slide(function() {
-		start_slideshow();
+		if(is_last_slide()) {
+			console.log("It was the last slide!");
+			// Fade out and reload
+			$(".slide").fadeOut(FADE_DURATION, function() {
+				location.reload();
+			});
+		} else {
+			start_slideshow();
+		}
 	});
 }
 

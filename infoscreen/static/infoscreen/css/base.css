@@ -2,6 +2,7 @@ body {
 	font-family: Monospace;
 	background: black;
 	overflow: hidden;
+	cursor: hidden;
 }
 body, a {
 	color: #EEE;
@@ -14,4 +15,13 @@ iframe.slide {
 	width: 100%;
 	height: 100%;
 	background: #FFFFFF;
+}
+#mouseoverlay {
+	z-index: 2;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	cursor: none;
 }
