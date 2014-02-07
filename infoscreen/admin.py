@@ -2,10 +2,10 @@ from django.contrib import admin
 from infoscreen.models import Slide, Screen
 
 class SlideAdmin(admin.ModelAdmin):
-    pass
+	ordering = ['priority', 'id']
 
 class ScreenAdmin(admin.ModelAdmin):
-    pass
+	pass
 
 admin.site.register(Slide, SlideAdmin)
 admin.site.register(Screen, ScreenAdmin)

@@ -3,7 +3,7 @@ from infoscreen.models import Slide, Screen
 from django.core import serializers
 
 def display_screen(request, screen_id):
-    slides = Slide.objects.filter(screen=screen_id)
+    slides = Slide.objects.filter(screen=screen_id).order_by('priority', 'id')
     context = {
     	'slides_json': serializers.serialize('json', slides)
     }
