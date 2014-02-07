@@ -2,8 +2,8 @@
 {% block content %}
 	<ul>
 		<li><a href="/admin">/admin</a> for administration panel.</li>
-	
-		<li><a href="/1/">/1</a> for Some test location</li>
-	
+		{% for screen in screens %}
+			<li><a href="{% url 'display_screen' screen.pk %}">/{{screen.pk}}</a> {{screen.physical_location}}</li>
+		{% endfor %}
 	</ul>
 {% endblock %}
