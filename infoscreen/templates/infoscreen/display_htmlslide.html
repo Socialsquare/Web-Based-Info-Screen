@@ -1,0 +1,11 @@
+{% extends "infoscreen/base.html" %}
+{% block content %}
+	<style>
+	body {
+		{% if slide.background_color %}
+		background-color: {{ slide.background_color }};
+		{% endif %}
+	}
+	</style>
+	{{ slide.content|safe }}
+{% endblock %}

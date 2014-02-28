@@ -41,14 +41,19 @@ function display_next_slide(end_of_slide_callback) {
 	}
 	var current_slide = this.slides[this.current_slide_index]
 	console.log("Next slide is ", current_slide);
+	if(current_slide.model == "infoscreen.urlslide") {
+		var current_url = current_slide.fields.url;
+	} else {
+		var current_url = "/slide/" + current_slide.pk;
+	}
 	// Display
-	display_slide(current_slide.fields.url, function($slide) {
-		// Pre delay
-		console.log("Wait for", current_slide.fields.delay, "seconds.");
+	display_slide(current_url, function($slide) {
+		// Pre exposure_time
+		console.log("Wait for", current_slide.fields.exposure_time, "seconds.");
 		setTimeout(function() {
 			console.log("End of slide!");
 			end_of_slide_callback($slide);
-		}, current_slide.fields.delay * 1000);
+		}, current_slide.fields.exposure_time * 1000);
 	});
 }
 

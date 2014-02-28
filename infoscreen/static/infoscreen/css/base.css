@@ -4,9 +4,11 @@ body {
 	overflow: hidden;
 	cursor: hidden;
 }
+
 body, a {
 	color: #EEE;
 }
+
 iframe.slide {
 	display: block;
 	position: absolute;
@@ -16,6 +18,7 @@ iframe.slide {
 	height: 100%;
 	background: #FFFFFF;
 }
+
 #mouseoverlay {
 	z-index: 2;
 	position: fixed;
