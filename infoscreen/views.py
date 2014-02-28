@@ -9,6 +9,9 @@ def display_screen(request, screen_id):
 
     url_slides = list(url_slides)
     html_slides = list(html_slides)
+	# Remove the content from the objects.
+    for slide in html_slides:
+        slide.content = None
     slides = url_slides + html_slides
     slides = sorted(slides, lambda a,b: cmp(a.priority, b.priority))
 
