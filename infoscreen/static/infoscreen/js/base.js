@@ -41,20 +41,19 @@ function display_next_slide(end_of_slide_callback) {
 	}
 	var current_slide = this.slides[this.current_slide_index]
 	console.log("Next slide is ", current_slide);
-	if(current_slide.fields.url) {
-		var current_url = current_slide.fields.url;
+	if(current_slide.url) {
+		var current_url = current_slide.url;
 	} else {
-		var current_url = "/slide/" + current_slide.pk;
+		var current_url = "/slide/" + current_slide.id;
 	}
 	// Display
 	display_slide(current_url, function($slide) {
 		// Pre exposure_time
-		console.log(current_slide.fields)
-		console.log("Wait for", current_slide.fields.exposure_time, "seconds.");
+		console.log("Wait for", current_slide.exposure_time, "seconds.");
 		setTimeout(function() {
 			console.log("End of slide!");
 			end_of_slide_callback($slide);
-		}, current_slide.fields.exposure_time * 1000);
+		}, current_slide.exposure_time * 1000);
 	});
 }
 

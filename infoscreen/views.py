@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from infoscreen.models import URLSlide, HTMLSlide, Screen
 from django.core import serializers
+import json
 
 def display_screen(request, screen_id):
     #slides = Slide.objects.filter(screen=screen_id)
@@ -13,7 +14,8 @@ def display_screen(request, screen_id):
     slides = sorted(slides, lambda a,b: cmp(a['priority'], b['priority']))
 
     context = {
-    	'slides_json': serializers.serialize('json', slides)
+    	#'slides_json': serializers.serialize('json', slides)
+		'slides_json': json.dumps(slides)
     }
     return render(request, 'infoscreen/display_screen.html', context)
 
