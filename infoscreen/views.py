@@ -4,16 +4,13 @@ from django.core import serializers
 
 def display_screen(request, screen_id):
     #slides = Slide.objects.filter(screen=screen_id)
-    url_slides = URLSlide.objects.filter(screen=screen_id).order_by('priority', 'id')
-    html_slides = HTMLSlide.objects.filter(screen=screen_id).order_by('priority', 'id')
+    url_slides = URLSlide.objects.filter(screen=screen_id).order_by('priority', 'id').values('id','exposure_time','url', 'priority')
+    html_slides = HTMLSlide.objects.filter(screen=screen_id).order_by('priority', 'id').values('id','exposure_time', 'priority')
 
     url_slides = list(url_slides)
     html_slides = list(html_slides)
-	# Remove the content from the objects.
-    for slide in html_slides:
-        slide.content = None
     slides = url_slides + html_slides
-    slides = sorted(slides, lambda a,b: cmp(a.priority, b.priority))
+    slides = sorted(slides, lambda a,b: cmp(a['priority'], b['priority']))
 
     context = {
     	'slides_json': serializers.serialize('json', slides)
