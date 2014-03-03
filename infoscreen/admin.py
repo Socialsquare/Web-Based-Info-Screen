@@ -5,7 +5,7 @@ class SlideAdmin(admin.ModelAdmin):
 	ordering = ['priority', 'id']
 
 class ScreenAdmin(admin.ModelAdmin):
-	pass
+	filter_horizontal = ['slides']
 
 admin.site.register(URLSlide, SlideAdmin)
 admin.site.register(HTMLSlide, SlideAdmin)
