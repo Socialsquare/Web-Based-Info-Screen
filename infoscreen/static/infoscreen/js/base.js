@@ -3,7 +3,7 @@ var FADE_DURATION = 2000;
 function display_slide(url, loaded_callback) {
 	$oldSlides = $(".slide");
 	$slide = $("<iframe></iframe>").appendTo("body");
-	$slide.attr('src', url).hide().addClass('slide').attr('seamless', '');
+	$slide.attr('src', url).hide().addClass('slide').attr('seamless', '').attr('frameborder', '0');
 	$slide.load(function() {
 		function go_display_next() {
 			$oldSlides.remove();
