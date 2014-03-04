@@ -10,7 +10,7 @@ class Slide(models.Model):
         ordering = ['priority', 'id']
 
 class URLSlide(Slide):
-    url = models.CharField(max_length=256)
+    url = models.CharField(max_length=1024)
     def __str__(self):
         return 'URLSlide %s' % ( super(URLSlide, self).__str__() )
 
