@@ -1,0 +1,88 @@
+@font-face {
+  font-family: 'DIN';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/DINNextLTPro-Regular.otf);/*src: local('DIN Next LT Pro Regular'), url(../fonts/DINNextLTPro-Regular.otf);*/
+}
+
+@font-face {
+  font-family: 'DIN';
+  font-style: italic;
+  font-weight: 400;
+  src: url(../fonts/DINNextLTPro-Italic.otf);
+}
+
+@font-face {
+  font-family: 'DIN Light';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/DINNextLTPro-Light.otf);
+}
+
+@font-face {
+  font-family: 'DIN Light';
+  font-style: italic;
+  font-weight: 400;
+  src: url(../fonts/DINNextLTPro-LightItalic.otf);
+}
+
+@font-face {
+  font-family: 'DIN UltraLight';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/DINNextLTPro-UltraLight.otf);
+}
+
+@font-face {
+  font-family: 'DIN UltraLight';
+  font-style: italic;
+  font-weight: 400;
+  src: url(../fonts/DINNextLTPro-UltraLightIt.otf);
+}
+
+body {
+  font-family: 'DIN';
+}
+
+body.occupied {
+  background-color: #f2a2a2;
+}
+
+body.free {
+  background-color: #b8f0a1;
+}
+
+.booked {
+  background-color: #f2dede;
+  border: 0.1em solid #ccabab;
+}
+
+.free {
+  background-color: #dff0d8;
+}
+
+.event {
+  margin-bottom: 0.5em;
+  padding: 0 1em;
+}
+
+.event .large {
+  font-size: 2em;
+}
+
+.event .summary {
+  font-family: 'DIN Light';
+}
+
+.location {
+  position: absolute;
+  bottom: 0px;
+}
+
+.timing {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  text-align: center;
+}

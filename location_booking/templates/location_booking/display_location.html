@@ -1,0 +1,35 @@
+{% extends "location_booking/base.html" %}
+{% block title %}{{ location.title }}{% endblock %}
+{% block content %}
+	<body class="{% if is_occupied %}occupied{% else %}free{% endif %}">
+		<h1 class="location">{{ location.title }}</h1>
+		{% for event in allday_events %}
+			<section class="booked event allday">
+				<p class="large">
+					<span class="status">Booked all day:</span>
+					<span class="summary">{{ event.summary }}</span>
+				</p>
+			</section>
+		{% endfor %}
+		{% for event in regular_events %}
+			<section class="booked event regular">
+				<p class="large">
+					<span class="status">Booked from {{ event.dtstart.dt|date:"H:i" }} until {{ event.dtend.dt|date:"H:i" }}:</span>
+					<span class="summary">{{ event.summary }}</span>
+				</p>
+				<p class="details">
+					Booking created {{ event.created.dt|date:"r" }} and was last modified {{ event.last_modified.dt|date:"r" }}
+				</p>
+			</section>
+		{% endfor %}
+		{% if minutes_left %}
+			<p class="timing">
+				{% if is_occupied %}
+					{{ minutes_left }} minutes left of the current booking.
+				{% else %}
+					{{ minutes_left }} minutes left until next booking begins.
+				{% endif %}
+			</p>
+			{% endif %}
+	</body>
+{% endblock %}
