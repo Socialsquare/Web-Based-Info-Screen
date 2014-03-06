@@ -9,6 +9,14 @@
 					<span class="status">Booked all day:</span>
 					<span class="summary">{{ event.summary }}</span>
 				</p>
+				<p class="details">
+					Booking created {{ event.created.dt|date:"r" }} and was last modified {{ event.last_modified.dt|date:"r" }}
+				</p>
+				{% if event.organizer %}
+					<p class="details">
+						Booked by {{ event.organizer|slice:"7:" }}
+					</p>
+				{% endif %}
 			</section>
 		{% endfor %}
 		{% for event in regular_events %}
@@ -20,6 +28,11 @@
 				<p class="details">
 					Booking created {{ event.created.dt|date:"r" }} and was last modified {{ event.last_modified.dt|date:"r" }}
 				</p>
+				{% if event.organizer %}
+					<p class="details">
+						Booked by {{ event.organizer|slice:"7:" }}
+					</p>
+				{% endif %}
 			</section>
 		{% endfor %}
 		{% if minutes_left %}

@@ -21,8 +21,11 @@ def display_location(request, location_id):
 			if event['dtend'].dt > now:
 				time_left.append( event['dtend'].dt - now )
 		# Minutes left until the current event ends or a new event starts.
-		time_left = min(time_left)
-		minutes_left = int(round(time_left.seconds / 60))
+		if len(time_left) == 0:
+			minutes_left = None
+		else:
+			time_left = min(time_left)
+			minutes_left = int(round(time_left.seconds / 60))
 	context = {
 		'location': location,
 		'allday_events': events_today['allday_events'],
