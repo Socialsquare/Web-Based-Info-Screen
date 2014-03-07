@@ -12,9 +12,6 @@ def localize_timezones(event):
                 event[field_name].dt = field_value.dt.astimezone( tzlocal() )
     return event
 
-def event_compare(event_a, event_b):
-	return cmp(event_a.get('DTSTART').dt > event_b.get('DTSTART').dt)
-
 class Calendar(models.Model):
     ical_url = models.CharField(max_length=1024)
     calendar = None
@@ -78,5 +75,5 @@ class Location(models.Model):
         		else:
         			result['regular_events'].append(event_dict)
        	# Sort based on start-time.
-       	result['regular_events'] = sorted(result['regular_events'], event_compare)
+       	result['regular_events'] = sorted(result['regular_events'], lambda a,b: cmp(a['dtstart'].dt, b['dtstart'].dt))
         return result

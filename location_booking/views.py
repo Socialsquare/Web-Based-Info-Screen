@@ -26,6 +26,7 @@ def display_location(request, location_id):
 		else:
 			time_left = min(time_left)
 			minutes_left = int(round(time_left.seconds / 60))
+	print events_today['regular_events']
 	context = {
 		'location': location,
 		'allday_events': events_today['allday_events'],

@@ -4,36 +4,14 @@
 	<body class="{% if is_occupied %}occupied{% else %}free{% endif %}">
 		<h1 class="location">{{ location.title }}</h1>
 		{% for event in allday_events %}
-			<section class="booked event allday">
-				<p class="large">
-					<span class="status">Booked all day:</span>
-					<span class="summary">{{ event.summary }}</span>
-				</p>
-				<p class="details">
-					Booking created {{ event.created.dt|date:"r" }} and was last modified {{ event.last_modified.dt|date:"r" }}
-				</p>
-				{% if event.organizer %}
-					<p class="details">
-						Booked by {{ event.organizer|slice:"7:" }}
-					</p>
-				{% endif %}
-			</section>
+			{% with allday=True %}
+				<section class="booked event allday">{% include "location_booking/booking_section.html" %}</section>
+			{% endwith %}
 		{% endfor %}
 		{% for event in regular_events %}
-			<section class="booked event regular">
-				<p class="large">
-					<span class="status">Booked from {{ event.dtstart.dt|date:"H:i" }} until {{ event.dtend.dt|date:"H:i" }}:</span>
-					<span class="summary">{{ event.summary }}</span>
-				</p>
-				<p class="details">
-					Booking created {{ event.created.dt|date:"r" }} and was last modified {{ event.last_modified.dt|date:"r" }}
-				</p>
-				{% if event.organizer %}
-					<p class="details">
-						Booked by {{ event.organizer|slice:"7:" }}
-					</p>
-				{% endif %}
-			</section>
+			{% with allday=False %}
+				<section class="booked event regular">{% include "location_booking/booking_section.html" %}</section>
+			{% endwith %}
 		{% endfor %}
 		{% if minutes_left %}
 			<p class="timing">
